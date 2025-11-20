@@ -1,15 +1,15 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
 
 def pytest_addoption(parser):
-    parser.addoption('--name-browser', action = 'store',
+    parser.addoption('--browser-name', action = 'store',
                      default = "chrome", help = "Choose browser")
 
-    parser.addoption('--language', default = 'None',
+    parser.addoption('--language', default = 'ru',
                      action = 'store', help = "choose language")
 
 
@@ -18,10 +18,10 @@ def browser(request):
     user_language = request.config.getoption('language')
     browser_name = request.config.getoption('browser_name')
 
-    options_chrome = Options()
-    options_chrome.add_experimental_option('pref', {'intl.accept_languages': user_language})
+    options_chrome = ChromeOptions()
+    options_chrome.add_experimental_option('prefs', {'intl.accept_languages': user_language})
 
-    options_firefox = Options()
+    options_firefox = FirefoxOptions()
     options_firefox.set_preference("intl.accept_languages", user_language)
 
     driver = None
@@ -33,7 +33,7 @@ def browser(request):
         driver = webdriver.Firefox(options = options_firefox)
     else:
         raise pytest.UsageError("browser_name != chrome or firefox")
-    yield browser
+    yield driver
     driver.quit()
 
 
