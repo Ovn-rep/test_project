@@ -1,6 +1,6 @@
-from email.policy import default
 import pytest
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.firefox.options import Options
 
@@ -10,7 +10,7 @@ def pytest_addoption(parser):
                      default = "chrome", help = "Choose browser")
 
     parser.addoption('--language', default = 'None',
-                     action = 'strore', help = "choose language")
+                     action = 'store', help = "choose language")
 
 
 @pytest.fixture(scope = 'function')
