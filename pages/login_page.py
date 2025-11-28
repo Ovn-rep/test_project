@@ -13,7 +13,9 @@ class LoginPage(BasePage):
 
 
     def should_be_login_form(self):
-        assert self.is_element_present(*LoginPageLocators.AUTH_FORM_LOCATOR), 'not "login form" on page'
+        assert self.is_element_present(*LoginPageLocators.AUTH_FORM_LOCATOR), \
+            'not "login form" on page'
 
     def should_be_register_form(self):
-        assert self.is_element_present(*LoginPageLocators.REG_FORM_LOCATOR), 'not "reg form" on page'
+        assert self.is_element_present(*LoginPageLocators.REG_FORM_LOCATOR), \
+            'not "reg form" on page'

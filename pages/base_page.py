@@ -1,5 +1,6 @@
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoSuchElementException
+import math
 
 class BasePage:
 
@@ -10,6 +11,9 @@ class BasePage:
 
     def open(self):
         self.browser.get(self.url)
+
+    def solve_quiz_and_get_code(self, x):
+        return math.log10(x) * (abs(12 * math.sin(x)))
 
     def is_element_present(self, how, what):
         try:
