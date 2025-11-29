@@ -12,8 +12,8 @@ class BasePage:
     def open(self):
         self.browser.get(self.url)
 
-    def solve_quiz_and_get_code(self, x):
-        return math.log10(x) * (abs(12 * math.sin(x)))
+    def solve_math(self, x):
+        return str(math.log(abs((12 * math.sin(float(x))))))
 
     def is_element_present(self, how, what):
         try:
