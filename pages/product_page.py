@@ -1,6 +1,9 @@
+import pytest
+
 from .base_page import BasePage
 from .locators import ProductPageLocators
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoAlertPresentException
 
 
 class ProductPage(BasePage):
@@ -18,21 +21,35 @@ class ProductPage(BasePage):
         alert_1.accept()
 
     def get_text_answer_code(self):
-        alert_2 = self.browser.switch_to.alert
-        answer_code = alert_2.text.split(" ")[-1]
-        print(f"answer: {answer_code}")
-        alert_2.accept()
+        try:
+            alert_2 = self.browser.switch_to.alert
+            answer_code = alert_2.text.split(" ")[-1]
+            print(f"answer: {answer_code}")
+            alert_2.accept()
+        except NoAlertPresentException:
+            print("No second alert presented")
+
+
+    def get_product_name(self):
+        product_name = (
+            self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text)
+        return product_name
+
+    def get_product_price(self):
+        product_price = (
+            self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text)
+        return product_price
 
     def should_be_product_name_in_massage(self):
         message_with_product_name = (
             self.browser.find_element(*ProductPageLocators.MASSAGE_WITH_PRODUCT_NAME))
         text_message_with_product_name = message_with_product_name.text
-        assert "The shellcoder's handbook" in text_message_with_product_name,\
+        assert self.get_product_name() == text_message_with_product_name,\
             "No product_name in text"
 
     def should_be_correct_price_in_basket_massage(self):
         message_with_basket_price = (
             self.browser.find_element(*ProductPageLocators.MASSAGE_WITH_BASKET_PRICE))
         text_message_with_price = message_with_basket_price.text
-        assert "9,99" in text_message_with_price,\
+        assert self.get_product_price() == text_message_with_price,\
             "Incorrect price in message with basket price"
