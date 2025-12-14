@@ -28,11 +28,9 @@ def browser(request):
     if browser_name == 'chrome':
         print("test open in Chrome")
         browser = webdriver.Chrome(options = options_chrome)
-        browser.implicitly_wait(10)
     elif browser_name == 'firefox':
         print("test open in FireFox")
         browser = webdriver.Firefox(options = options_firefox)
-        browser.implicitly_wait(10)
     else:
         raise pytest.UsageError("browser_name != chrome or firefox")
     yield browser

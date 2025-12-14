@@ -1,5 +1,9 @@
+from unittest import expectedFailure
+
 from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 import math
 
 class BasePage:
@@ -20,7 +24,27 @@ class BasePage:
             self.browser.find_element(how, what)
         except NoSuchElementException:
             return False
+
         return True
+
+    def is_element_not_present(self, how, what, timeout = 5):
+        wait = WebDriverWait(self.browser, timeout)
+        try:
+            wait.until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return True
+
+        return False
+
+    def is_disappeared(self, how, what, timeout = 5):
+        wait = WebDriverWait(self.browser, timeout)
+        try:
+            wait.until_not(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+
+        return True
+
 
 
 

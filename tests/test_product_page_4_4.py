@@ -1,7 +1,5 @@
 import pytest
-from selenium.webdriver.common.by import By
 from pages.product_page import ProductPage
-import time
 
 
 @pytest.mark.parametrize('link', ["?promo=offer0", "?promo=offer1", "?promo=offer2",

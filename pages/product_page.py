@@ -53,3 +53,11 @@ class ProductPage(BasePage):
         text_message_with_price = message_with_basket_price.text
         assert self.get_product_price() == text_message_with_price,\
             "Incorrect price in message with basket price"
+
+    def should_not_be_success_message(self):
+        assert self.is_element_not_present(*ProductPageLocators.MASSAGE_ABOUT_SUCCES_ADD_TO_BASKET), \
+            "massage about succes add to basket on the page"
+
+    def should_be_disappeared_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.MASSAGE_ABOUT_SUCCES_ADD_TO_BASKET), \
+            "massage about succes add to basket is disappeared"
