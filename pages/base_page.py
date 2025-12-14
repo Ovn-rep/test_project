@@ -76,6 +76,10 @@ class BasePage:
         assert  "Ваша корзина пуста" in text_in_message, \
             "No massage in basket"
 
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"
+
 
 
 

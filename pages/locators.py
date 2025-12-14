@@ -8,6 +8,7 @@ class BasePageLocators:
     BASKET_ADD_BUTTON = (By.CSS_SELECTOR,  "span a.btn.btn-default")
     PRODUCT_CARD_IN_BASKET = (By.CLASS_NAME, "thumbnail")
     NO_PRODUCT_MESSAGE = (By.CLASS_NAME, "content")
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
 class ProductPageLocators:
     ADD_TO_BASKET_LOCATOR = (By.CLASS_NAME, 'btn-add-to-basket')
@@ -16,3 +17,9 @@ class ProductPageLocators:
     PRODUCT_NAME = (By.CSS_SELECTOR, '.col-sm-6.product_main h1')
     PRODUCT_PRICE = (By.CSS_SELECTOR, '.col-sm-6.product_main h1 + p')
     MASSAGE_ABOUT_SUCCES_ADD_TO_BASKET = (By.CSS_SELECTOR, '#messages .alert:first-child')
+
+class LoginPageLocators:
+    EMAIL_INPUT = (By.NAME, "registration-email")
+    PASS_INPUT = (By.NAME, "registration-password1")
+    PASS_REPEAT_INPUT = (By.NAME, "registration-password2")
+    REG_BUTTON = (By.NAME, "registration_submit")
