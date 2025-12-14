@@ -11,7 +11,6 @@ def  test_guest_can_add_product_to_basket(browser, link):
 
     product_page = ProductPage(browser, product_page_link)
     product_page.open()
-
     product_page.get_product_name()
     product_page.get_product_name()
     product_page.add_to_basket()

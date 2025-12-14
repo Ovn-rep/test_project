@@ -62,6 +62,19 @@ class BasePage:
         assert self.is_element_present(*BasePageLocators.REG_FORM_LOCATOR), \
             'not "reg form" on page'
 
+    def go_to_basket(self):
+        basket_button = self.browser.find_element(*BasePageLocators.BASKET_ADD_BUTTON)
+        basket_button.click()
+
+    def should_be_product_in_basket(self):
+        assert self.is_element_not_present(*BasePageLocators.PRODUCT_CARD_IN_BASKET), \
+            "product in basket"
+
+    def should_be_massage_no_product_in_basket(self):
+        no_product = self.browser.find_element(*BasePageLocators.NO_PRODUCT_MESSAGE)
+        text_in_message = no_product.text
+        assert  "Ваша корзина пуста" in text_in_message, \
+            "No massage in basket"
 
 
 

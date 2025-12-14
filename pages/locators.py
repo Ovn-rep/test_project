@@ -5,6 +5,9 @@ class BasePageLocators:
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
     AUTH_FORM_LOCATOR = (By.ID, 'login_form')
     REG_FORM_LOCATOR = (By.ID, 'register_form')
+    BASKET_ADD_BUTTON = (By.CSS_SELECTOR,  "span a.btn.btn-default")
+    PRODUCT_CARD_IN_BASKET = (By.CLASS_NAME, "thumbnail")
+    NO_PRODUCT_MESSAGE = (By.CLASS_NAME, "content")
 
 class ProductPageLocators:
     ADD_TO_BASKET_LOCATOR = (By.CLASS_NAME, 'btn-add-to-basket')
